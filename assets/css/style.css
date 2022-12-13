@@ -1,23 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* login admin signup*/
-
 
 html,
 body {
@@ -53,22 +34,24 @@ body {
   border-top-right-radius: 0;
 }
 
-
 .form-login {
-    max-width: 430px;
-    padding: 15px;
-  }
-  
- 
-  
-  .form-login input[type="content"] {
-    margin-bottom: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  
-  .form-login input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+  max-width: 430px;
+  padding: 15px;
+}
+
+.form-login input[type="content"] {
+  margin-bottom: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+em {
+  color: gray;
+  opacity: 0.5;
+}

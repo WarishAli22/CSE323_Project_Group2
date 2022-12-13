@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const sql = require('mysql');
-const {v4 : uuidv4} = require('uuid'); //Generates Unique ids
+const {v4 : uuid} = require('uuid'); //Generates Unique ids
 
 //PORT VARIABLE
 const port = 3000;
@@ -40,6 +40,7 @@ db.getConnection((error, connection)=>{
   console.log('Database Connected');
 })
 
+
 //GET REQUESTS
 app.get('/signin', (req,res)=>{
   res.render('signin.ejs');
@@ -51,6 +52,22 @@ app.get('/signup', (req,res)=>{
 
 
 //POST REQUESTS
+app.post('/signup', (req,res)=>{
+  console.log(req.body);
+  const {fname, lname, NID, contact, DOB, email, password} = req.body;
+
+  //Pushing Data into database
+  let sql_query = `INSERT INTO Customer(CID, fname, lname, NID, Contact, DOB, email, password) VALUES ('${id=uuid()}', '${fname}', '${lname}', '${NID}', '${contact}', '${DOB}', '${email}', '${password}')`;
+  db.query(sql_query, (error, result)=>{
+    if(error){
+      console.log("Something went wrong");
+    }
+    else{
+      res.redirect('/home');
+      console.log("Inserted into table");
+    }
+  })
+})
 
 app.listen(port, ()=>{
   console.log("Listening");
