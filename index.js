@@ -37,7 +37,7 @@ const db = sql.createPool({
 
 db.getConnection((error, connection)=>{
   if(error) throw error;
-  console.log('Database Connected broooo another change');
+  console.log('Database Connected');
 })
 
 //GET REQUESTS
