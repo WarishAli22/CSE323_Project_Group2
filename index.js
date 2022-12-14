@@ -50,6 +50,10 @@ app.get('/signup', (req,res)=>{
   res.render('signup.ejs');
 })
 
+app.get('/admin', (req,res)=>{
+  res.render('admin_signin.ejs');
+})
+
 
 //POST REQUESTS
 app.post('/signup', (req,res)=>{
