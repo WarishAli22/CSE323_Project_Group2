@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Booking</title>
+
+    <link rel="shortcut icon" href="img/fav.png" type="image/png" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/bootstrap-5.2.3/css/bootstrap.css"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/web.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/form.css" />
+  </head>
+
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top"
+            ><i class="fa fa-play fa-code"></i> HOTEL</a
+          >
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/home" class="page-scroll"><b>HOME</b></a>
+            </li>
+            <li>
+              <a href="#" class="page-scroll"><b>BOOKING</b></a>
+            </li>
+            <li>
+              <a href="/help" class="page-scroll"><b>HELP</b></a>
+            </li>
+            <li>
+              <a href="/about" class="page-scroll"><b>ABOUT</b></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header id="header">
+      <div class="intro">
+        <div id="booking" class="section">
+          <div class="section-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                  <div class="booking-cta">
+                    <h1>Make your reservation</h1>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Animi facere, soluta magnam consectetur molestias itaque
+                      ad sint fugit architecto incidunt iste culpa perspiciatis
+                      possimus voluptates aliquid consequuntur cumque quasi.
+                      Perspiciatis.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                  <div class="booking-form">
+                    <form action="/booking" method="POST">
+                      <!-- <div class="form-group">
+                        <span class="form-label">Your Email</span>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Make Reservation Under the name"
+                        />
+                      </div> -->
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <span class="form-label">Check In</span>
+                            <input
+                              class="form-control"
+                              name="start_date"
+                              type="date"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <span class="form-label">Check out</span>
+                            <input
+                              class="form-control"
+                              name="end_date"
+                              type="date"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <span class="form-label">Room</span>
+                            <select class="form-control">
+                              <option>Deluxe</option>
+                              <option>2</option>
+                              <option>3</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <span class="form-label">Adults</span>
+                            <select class="form-control" name="adult_num">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <span class="form-label">Children</span>
+                            <select class="form-control" name="child_num">
+                              <option>0</option>
+                              <option>1</option>
+                              <option>2</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-btn">
+                        <button class="submit-btn">Book Now</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="footer">
+      <div class="container text-center">
+        <div class="fnav">
+            <p>Address : <a href="" rel="nofolslow">Adare County Limerick</a>.</p>
+            <p>Phone : <a href="" rel="nofollow">+91 9852 8855 252</a>.</p>
+          <p>Email : <a href="" rel="nofollow">Help@hotel.com</a>.</p>
+          <p>Copyright &copy; 2050 HOTEL. Designed by <a href="" rel="nofollow">Sakib</a>.</p>    </div>
+      </div>
+
+    <script
+      type="text/javascript"
+      src="assets/bootstrap-5.2.3/js/bootstrap.js"
+    ></script>
+    <script type="text/javascript" src="assets/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+  </body>
+</html>

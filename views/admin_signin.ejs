@@ -16,7 +16,7 @@
   </head>
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
-      <form>
+      <form action="/adminlogin" method="POST">
         <h1 class="h3 mb-3 fw-normal">ADMIN</h1>
 
         <div class="form-floating">
@@ -25,6 +25,7 @@
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+            name="admin_email"
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -34,6 +35,7 @@
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
+            name="admin_pass"
           />
           <label for="floatingPassword">Password</label>
         </div>
