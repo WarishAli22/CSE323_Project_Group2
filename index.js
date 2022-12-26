@@ -45,7 +45,8 @@ const db = sql.createPool({
   host: 'localhost',
   user: 'root',
   password: "",
-  database: 'testdb'
+  database: 'testdb',
+  dateStrings:true
 });
 
 db.getConnection((error, connection)=>{
@@ -99,11 +100,32 @@ app.get('/logoutadmin', (req,res)=>{
 })
 
 app.get('/room', (req,res)=>{
-  res.render('room.ejs');
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+
+  else{
+    const sQuery = "Select * from room";
+    db.query(sQuery, (error,result)=>{
+      res.render("room.ejs", {result});
+    })
+  }
 })
 
 app.get('/bookingadmin', (req,res)=>{
-  res.render('booking_table.ejs');
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    const sQuery = "Select * from booking";
+    db.query(sQuery, (error,result)=>{
+      res.render("booking_table.ejs", {result});
+    })
+  }
 })
 
 app.get('/booking', (req,res)=>{
@@ -117,34 +139,32 @@ app.get('/booking', (req,res)=>{
 })
 
 app.get('/customer', (req,res)=>{
-  res.render('customer.ejs');
-})
-
-app.get("/about", (req,res)=>{
-  res.render('about.ejs');
-})
-
-app.get("/account", (req,res)=>{
-  if(!req.session.email){
-    res.redirect('/login');
-  }
-  else{
-    res.render('account.ejs');
-  }
-  
-})
-
-//ADMIN GET REQUESTS
-app.get("/adminhome", (req,res)=>{
   if(!req.session.admin_email){
     let message = "Access Denied";
       let redirPath = "/home";
       res.render('error_page.ejs', {message, redirPath} );
   }
   else{
-    res.render("booking_table.ejs");
+    const sQuery = "Select * from customer";
+    db.query(sQuery, (error,result)=>{
+      res.render("customer.ejs", {result});
+    })
   }
- 
+})
+
+app.get("/about", (req,res)=>{
+  res.render('about.ejs');
+})
+
+
+
+//ADMIN GET REQUESTS
+
+
+
+
+app.get("/testq", (req,res)=>{
+  res.render("signup2");
 })
 
 
@@ -221,18 +241,18 @@ app.post("/adminlogin", (req,res)=>{
     console.log(result);
     if(result.length === 0){
       let message = "User Not Found";
-      let redirPath = "/adminlogin";
+      let redirPath = "/admin";
       res.render('error_page.ejs', {message, redirPath} );
     }
     else if(admin_pass != result[0].password){
       let message = "Incorrect Credentials";
-      let redirPath = "/adminlogin";
+      let redirPath = "/admin";
       res.render('error_page.ejs', {message, redirPath} );
     }
 
     else{
       req.session.admin_email = result[0].email;
-      res.redirect("/adminhome");
+      res.redirect("/bookingadmin");
     }
 
   })
@@ -245,16 +265,121 @@ app.post('/booking', (req,res)=>{
   let end_date = req.body.end_date;
   let adult_num = req.body.adult_num;
   let child_num = req.body.child_num;
+  let type = req.body.Type;
 
-  const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, RoomNum) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', 1 )`
+  let standardNum = 10;
+  let deluxeNum = 8;
+  let suiteNum = 7;
 
-  db.query(sQry, (error, result)=>{
-    if(error) throw error;
-    console.log("Inserted into booking");
-    res.redirect("/home");
+  console.log(req.body.start_date);
+  console.log(req.body.end_date);
+
+  const q = `Select * from booking where type = '${type}' AND ((start_date between '${start_date}' and '${end_date}') OR (end_date between '${start_date}' and '${end_date}' ) OR (start_date<='${start_date}' AND end_date>='${end_date}'))`;
+
+  db.query(q, (error, result)=>{
+    console.log(result);
+    if(type=== "Standard"){
+      if(result.length < standardNum){
+        const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+        db.query(sQry, (error, result)=>{
+          if(error) throw error;
+          console.log("Inserted into booking");
+          res.redirect("/booking");
+        })
+      }
+      else{
+        let message = `All ${type} rooms are booked at that time`;
+        let redirPath = "/booking";
+        res.render('error_page.ejs', {message, redirPath} )
+      }
+    }
+
+    else if(type=== "Deluxe"){
+      if(result.length < deluxeNum){
+        const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+        db.query(sQry, (error, result)=>{
+          if(error) throw error;
+          console.log("Inserted into booking");
+          res.redirect("/booking");
+        })
+      }
+      else{
+        let message = `All ${type} rooms are booked at that time`;
+        let redirPath = "/booking";
+        res.render('error_page.ejs', {message, redirPath} )
+      }
+    }
+
+    else if(type=== "Suite"){
+      if(result.length < suiteNum){
+        const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+        db.query(sQry, (error, result)=>{
+          if(error) throw error;
+          console.log("Inserted into booking");
+          res.redirect("/booking");
+        })
+      }
+      else{
+        let message = `All ${type} rooms are booked at that time`;
+        let redirPath = "/booking";
+        res.render('error_page.ejs', {message, redirPath,} )
+      }
+    }
   })
-
 })
+
+//ADMIN CRUD
+
+app.get("/createaccount", (req,res)=>{
+  if(!req.session.admin_email){
+    res.send("Unauthorized");
+  }
+  else{
+    res.render('account.ejs');
+  }
+})
+
+app.get("/bookingcreate", (req,res)=>{
+  if(!req.session.admin_email){
+    res.send("Unauthorized");
+  }
+  else{
+    res.render('createbooking.ejs');
+  }
+})
+//CREATE
+
+app.post("/usercreate", (req,res)=>{
+    const {fname, lname, NID, Contact, DOB, email, password} = req.body;
+    let sql_query = `INSERT INTO Customer(CID, fname, lname, NID, Contact, DOB, email, password) VALUES ('${id=uuid()}', '${fname}', '${lname}', '${NID}', '${Contact}', '${DOB}', '${email}', '${password}')`;
+    db.query(sql_query, (error, result)=>{
+      if(error){
+        console.log("Something went wrong");
+      }
+      else{
+        console.log(result);
+        console.log("Inserted into table");
+      } 
+  })
+  }
+)
+
+app.post("/bookingcreate", (req,res)=>{
+  const {start_date, end_date, Type, adult_num, email, child_num, CID } = req.body; 
+  const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID = uuid()}', '${CID}', '${email}', '${Type}' )`;
+  db.query(sQry, (error, result)=>{
+    if(error){
+      console.log("Something went wrong");
+    }
+    else{
+      console.log(result);
+      console.log("Inserted into table");
+      res.redirect("/bookingcreate");
+    } 
+})
+}
+)
+
 
 
 

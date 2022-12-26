@@ -4,7 +4,7 @@
 <head>
 
 
-    <title>Account</title>
+    <title>Create Booking</title>
 
 
     <link rel="shortcut icon" href="img/fav.png" type="image/png">
@@ -51,58 +51,76 @@
                 <div class="row back">
                     <div class="col-12 ">
                         <div class="my-5" style="padding-top: 10%;">
-                            <h1>Create A User</h1>
+                            <h1>Create A Booking</h1>
                             <hr>
                         </div>
-                        <form class="file-upload" action="/usercreate" method="POST">
+                        <form class="file-upload" action="/bookingcreate" method="POST">
                             <div class="row mb-5 gx-5">
                                 <div class="col-xxl-8 mb-5 mb-xxl-0">
                                     <div class="bg-secondary-soft px-4 py-5 rounded">
                                         <div class="row g-3">
                                             <div class="col-md-6">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" name="fname" class="form-control" placeholder=""
+                                                <label class="form-label">CID</label>
+                                                <input type="text" name="CID" class="form-control" placeholder=""
                                                     aria-label="First name" value="Scaralet">
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" name="lname" class="form-control" placeholder=""
-                                                    aria-label="Last name" value="Doe">
+                                                <span class="form-label">Children</span>
+                                                <select class="form-control" name="child_num">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                                <span class="select-arrow"></span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">Phone number *</label>
-                                                <input type="text" name="Contact" class="form-control" placeholder=""
-                                                    aria-label="Phone number" value="(333) 000 555">
+                                                <div class="form-group">
+                                                    <span class="form-label">Room</span>
+                                                    <select class="form-control" name="Type">
+                                                      <option>Standard</option>
+                                                      <option>Deluxe</option>
+                                                      <option>Suite</option>
+                                                    </select>
+                                                    <span class="select-arrow"></span>
+                                                  </div>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <span class="form-label">Adults</span>
+                                                <select class="form-control" name="adult_num">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                                <span class="select-arrow"></span>
+                                              </div>
                                             <div class="col-md-6">
                                                 <label for="inputEmail4" class="form-label">Email</label>
                                                 <input type="email" name="email" class="form-control" id="inputEmail4"
                                                     value="example@homerealty.com">
                                             </div>
-                                            
                                             <div class="col-md-6">
-                                                <label class="form-label">NID</label>
-                                                <input type="text" name="NID" class="form-control" placeholder=""
-                                                    aria-label="nid" value="Scaralet D">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Password</label>
-                                                <input type="text" name="password" class="form-control" placeholder=""
-                                                    aria-label="nid" value="Scaralet D">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">DOB</label>
+                                                <label class="form-label">Start Date</label>
                                                 <div class="form-group">
                                                     <input
                                                       class="form-control"
                                                       id="floatingInput"
-                                                      name="DOB"
+                                                      name="start_date"
                                                       type="date"
                                                       required
                                                       placeholder="Date of Birth"
                                                     />
                                                   </div>
+                                                  <label class="form-label">End Date</label>
+                                                <div class="form-group">
+                                                    <input
+                                                      class="form-control"
+                                                      id="floatingInput"
+                                                      name="end_date"
+                                                      type="date"
+                                                      required
+                                                      placeholder="Date of Birth"
+                                                    />
+                                                  </div>  
                                             </div>
                                         </div>
                                     </div>

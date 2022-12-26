@@ -59,7 +59,7 @@
           />
           <label for="floatingInput">Phone</label>
         </div>
-        <div class="form-floating">
+        <!-- <div class="form-floating">
           <input
             type="content"
             class="form-control"
@@ -68,6 +68,22 @@
             name="DOB"
           />
           <label for="floatingInput">Date of Birth <em>yyyy/mm/dd</em></label>
+        </div> -->
+        <!-- <div class="form-floating">
+          <input class="form-control" type="date" name="DOB" required>
+            <label for="floatingInput">Date of Birth</label>
+        </div> -->
+
+        <div class="form-group">
+          
+          <input
+            class="form-control"
+            id="floatingInput"
+            name="DOB"
+            type="date"
+            required
+            placeholder="Date of Birth"
+          />
         </div>
         <div class="form-floating">
           <input
@@ -92,7 +108,12 @@
         <button class="w-100 btn btn-lg btn-primary" type="submit">
           Sign Up
         </button>
+
       </form>
+
+      <p class="mb-3 fw-normal" style="padding-top: 5%;">Already Have an Account? Login Here</p>
+
+        <a href="/login"><button class="w-35 btn btn-lg btn-danger">Login</button></a>
     </main>
   </body>
 </html>
