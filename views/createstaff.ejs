@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Staff</title>
+
+
+    <link rel="shortcut icon" href="img/fav.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-5.2.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/web.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/account.css">
+
+
+
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top mynav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/bookingadmin" class="page-scroll"><b>Back to BOOKING</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <header id="header">
+        <div class="intro">
+
+
+
+            <div class="container ">
+                <div class="row back">
+                    <div class="col-12 ">
+                        <div class="my-5" style="padding-top: 10%;">
+                            <h1>Create Staff</h1>
+                            <hr>
+                        </div>
+                        <form class="file-upload" action="/createstaff" method="POST">
+                            <div class="row mb-5 gx-5">
+                                <div class="col-xxl-8 mb-5 mb-xxl-0">
+                                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" name="fname" class="form-control" placeholder=""
+                                                    aria-label="First name" value="Scaralet">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" name="lname" class="form-control" placeholder=""
+                                                    aria-label="Last name" value="Doe">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Phone number *</label>
+                                                <input type="text" name="Contact" class="form-control" placeholder=""
+                                                    aria-label="Phone number" value="(333) 000 555">
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control" id="inputEmail4"
+                                                    value="example@homerealty.com">
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <label class="form-label">NID</label>
+                                                <input type="text" name="NID" class="form-control" placeholder=""
+                                                    aria-label="nid" value="Scaralet D">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Designation</label>
+                                                <input type="text" name="Designation" class="form-control" placeholder=""
+                                                    aria-label="nid" value="Scaralet D">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">DOB</label>
+                                                <div class="form-group">
+                                                    <input
+                                                      class="form-control"
+                                                      id="floatingInput"
+                                                      name="DOB"
+                                                      type="date"
+                                                      required
+                                                      placeholder="Date of Birth"
+                                                    />
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- change password -->
+                                <!-- <div class="col-xxl-6">
+                                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                                        <div class="row g-3">
+                                            <h3 class="my-4">Change Password</h3>
+                                            <div class="col-md-12">
+                                                <label for="exampleInputPassword1" class="form-label">Old password
+                                                    *</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword3">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="exampleInputPassword2" class="form-label">New password
+                                                    *</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword2">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="exampleInputPassword3" class="form-label">Confirm Password
+                                                    *</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="gap-3 d-md-flex justify-content-md-end text-center" style="padding: 5%; ">
+                                <button type="submit" class="btn btn-primary btn-lg">Add profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            </section>
+        </div>
+    </header>
+
+
+    <div id="footer">
+        <div class="container text-center">
+            <div class="fnav">
+
+                <p>Address : <a href="" rel="nofolslow">Adare County Limerick</a>.</p>
+                <p>Phone : <a href="" rel="nofollow">+91 9852 8855 252</a>.</p>
+                <p>Email : <a href="" rel="nofollow">Help@hotel.com</a>.</p>
+                <p>Copyright &copy; 2050 HOTEL. Designed by <a href="" rel="nofollow">Sakib</a>.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="assets/bootstrap-5.2.3/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/myjs.js"></script>
+</body>
+
+</html>

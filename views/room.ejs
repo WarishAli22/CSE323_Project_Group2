@@ -22,6 +22,10 @@
                 <li>
                     <a href="/room" class="active-menu waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> room </a>
                 </li>
+
+                <li>
+                    <a href="/staff" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Staff </a>
+                </li>
                 <li>
                     <a href="/logoutadmin" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Logout </a>
                 </li>
@@ -46,7 +50,6 @@
                                         <tr>
                                             <th>Room Number</th>
                                             <th>Type</th>
-                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,10 +57,6 @@
                                             <tr class="odd gradeX">
                                             <td><%= result.RoomNum %></td>
                                             <td><%= result.Type %></td> 
-                                            <td style='white-space: nowrap' class="center"> 
-                                                <a href="#" type="button" class="btn btn-primary">Edit</a>
-                                                <a href="#" type="button" class="btn btn-danger">Delete</a>
-                                            </td>
                                         </tr>
                                         <%})%>                                                                             
                                     </tbody>

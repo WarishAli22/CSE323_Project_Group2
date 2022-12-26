@@ -22,6 +22,10 @@
                 <li>
                     <a href="/room" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> room </a>
                 </li>
+
+                <li>
+                    <a href="/staff" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Staff </a>
+                </li>
                 <li>
                     <a href="/logoutadmin" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Logout </a>
                 </li>
@@ -67,8 +71,8 @@
                                             <td class="center"><%= result.DOB %></td>
                                             <td class="center"><%= result.email %></td>
                                             <td style='white-space: nowrap' class="center"> 
-                                                <a href="#" type="button" class="btn btn-primary">Edit</a>
-                                                <a href="#" type="button" class="btn btn-danger">Delete</a>
+                                                <a href="/editcust/<%= result.CID %>" type="button" class="btn btn-primary">Edit</a>
+                                                <a href="/deletecust/<%= result.CID %>" type="button" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                         <%})%>

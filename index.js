@@ -23,8 +23,8 @@ const port = 3000;
 
 
 //Gives access to views folder from any path
-// const path = require('path')
-// app.set('views', path.join(__dirname, 'views'));
+const path = require('path')
+app.set('views', path.join(__dirname, 'views'));
 
 //Templating Engine
 app.set('view engine', 'ejs');
@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 //Middlewre
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use('/assets',express.static('assets'));
+app.use('/assets',express.static(path.join(__dirname, 'assets')));
 app.use(session({
   secret: 'keyboard cat',
   resave: true,
@@ -152,22 +152,179 @@ app.get('/customer', (req,res)=>{
   }
 })
 
+
 app.get("/about", (req,res)=>{
   res.render('about.ejs');
 })
 
 
+//Admin Edit Requests
+app.get("/edit/:bookid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    const bookid = req.params.bookid;
+    res.render("editbooking.ejs", {bookid});
+  }
+  
+})
+
+app.post("/bookingedit", (req,res)=>{
+  console.log(req.body);
+  const {Booking_ID, child_num, adult_num, start_date, end_date, Type} = req.body;
+  const qry = `update booking set Start_Date = '${start_date}', End_Date = '${end_date}', Type = '${Type}', Adult_num='${adult_num}', Child_Num='${child_num}' where Booking_ID = '${Booking_ID}'`
+  db.query(qry, (err,result)=>{
+    if(err) throw err;
+  })
+})
+
+app.get("/editcust/:cid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    const cid = req.params.cid;
+    res.render("editcustomer.ejs", {cid});
+  }
+  
+})
+
+app.post("/customeredit", (req,res)=>{
+  const{CID, fname, lname, Contact, NID, DOB} = req.body;
+  const sqry = `update customer set fname='${fname}', lname='${lname}', Contact='${Contact}', NID='${NID}', DOB='${DOB}' where CID = '${CID}'`;
+  db.query(sqry, (err,res)=>{
+    if(err) throw err;
+  })
+})
+
+app.get("/delete/:bid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    const{bid} = req.params;
+    let qry = `Delete from booking where Booking_ID = '${bid}'`;
+    db.query(qry, (err,res)=>{
+      if(err) throw err;
+  })
+  res.redirect("/bookingadmin");
+  }
+  
+})
+
+app.get("/deletecust/:cid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    const{cid} = req.params;
+    let qry = `Delete from customer where CID = '${cid}'`;
+    db.query(qry, (err,res)=>{
+      if(err) throw err;
+  })
+  res.redirect("/customer");
+  }
+})
+
 
 //ADMIN GET REQUESTS
-
-
-
 
 app.get("/testq", (req,res)=>{
   res.render("signup2");
 })
 
+app.get("/staff", (req,res)=>{
+  if(!req.session.admin_email){
+      let message = "Access Denied";
+      let redirPath = "/home";
+      res.render('error_page.ejs', {message, redirPath} );
+  }
+  else{
+    let qry = "Select * from staff";
+    db.query(qry, (err,result)=>{
+      if(err) throw err;
+      else{
+        res.render("staff.ejs", {result});
+      }
+    })
+    
+  }
+})
 
+app.get("/createstaff", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+    let redirPath = "/home";
+    res.render('error_page.ejs', {message, redirPath} );
+}
+else{
+  res.render("createstaff.ejs");
+}
+})
+
+app.get("/deletestaff/:sid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+    let redirPath = "/home";
+    res.render('error_page.ejs', {message, redirPath} );
+}
+else{
+  const {sid} = req.params;
+  let qry = `Delete from staff where sid='${sid}'`;
+  db.query(qry,(err,result)=>{
+    if(err) throw err;
+  })
+  res.redirect("/staff");
+}
+  
+})
+
+app.post("/createstaff", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+    let redirPath = "/home";
+    res.render('error_page.ejs', {message, redirPath} );
+}
+else{
+  const {fname,	lname,	email,	DOB,	Contact,	Designation,	NID} = req.body;
+  let qry = `insert into staff(SID, fname,	lname,	email,	DOB,	contact,	Designation,	NID) values ('${SID=uuid()}', '${fname}', '${lname}', '${email}', '${DOB}', '${Contact}', '${Designation}', '${NID}')`;
+  db.query(qry, (err,result)=>{
+    if(err) throw err;
+  })
+  res.redirect("/createstaff");
+}
+  
+})
+
+app.get("/editstaff/:sid", (req,res)=>{
+  if(!req.session.admin_email){
+    let message = "Access Denied";
+    let redirPath = "/home";
+    res.render('error_page.ejs', {message, redirPath} );
+}
+
+else{
+  const {sid} = req.params;
+  res.render("editstaff.ejs",{sid});
+}
+})
+
+app.post("/editstaff", (req,res)=>{
+  const {SID, fname,	lname,	email,	DOB,	Contact,	Designation,	NID} = req.body;
+  let qry = `update staff set fname='${fname}', lname='${lname}', email='${email}', DOB='${DOB}', Contact='${Contact}', Designation='${Designation}', NID='${NID}' where SID='${SID}'`;
+  db.query(qry, (err,result)=>{
+    if(err) throw err;
+  })
+})
 
 //POST REQUESTS
 app.post('/signup', (req,res)=>{
