@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Edit Booking</title>
+
+
+    <link rel="shortcut icon" href="img/fav.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="../assets/bootstrap-5.2.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/web.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/account.css">
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top mynav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/bookingadmin" class="page-scroll"><b>Back to BOOKING</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <header id="header">
+        <div class="intro">
+
+
+
+            <div class="container ">
+                <div class="row back">
+                    <div class="col-12 ">
+                        <div class="my-5" style="padding-top: 10%;">
+                            <h1>Edit Booking</h1>
+                            <hr>
+                        </div>
+                        <form class="file-upload" action="/bookingedit" method="POST">
+                            <div class="row mb-5 gx-5">
+                                <div class="col-xxl-8 mb-5 mb-xxl-0">
+                                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                                        <div class="row g-3">
+
+                                            <div class="col-md-6">
+                                                <label class="form-label">Booking ID</label>
+                                                <input type="text" name="Booking_ID" class="form-control" placeholder=""
+                                                    aria-label="First name" value="<%= bookid %>" readonly>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <span class="form-label"><b>Children</b></span>
+                                                <select class="form-control" name="child_num">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                                <span class="select-arrow"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <span class="form-label"><b>Room</b></span>
+                                                    <select class="form-control" name="Type">
+                                                      <option>Standard</option>
+                                                      <option>Deluxe</option>
+                                                      <option>Suite</option>
+                                                    </select>
+                                                    <span class="select-arrow"></span>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="form-label"><b>Adults</b></span>
+                                                <select class="form-control" name="adult_num">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                </select>
+                                                <span class="select-arrow"></span>
+                                              </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Start Date</label>
+                                                <div class="form-group">
+                                                    <input
+                                                      class="form-control"
+                                                      id="floatingInput"
+                                                      name="start_date"
+                                                      type="date"
+                                                      required
+                                                      placeholder="Date of Birth"
+                                                    />
+                                                  </div>
+                                                  <label class="form-label">End Date</label>
+                                                <div class="form-group">
+                                                    <input
+                                                      class="form-control"
+                                                      id="floatingInput"
+                                                      name="end_date"
+                                                      type="date"
+                                                      required
+                                                      placeholder="Date of Birth"
+                                                    />
+                                                  </div>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="gap-3 d-md-flex justify-content-md-end text-center" style="padding: 5%; ">
+                                <button type="submit" class="btn btn-primary btn-lg">Edit Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            </section>
+        </div>
+    </header>
+
+
+    <div id="footer">
+        <div class="container text-center">
+            <div class="fnav">
+
+                <p>Address : <a href="" rel="nofolslow">Adare County Limerick</a>.</p>
+                <p>Phone : <a href="" rel="nofollow">+91 9852 8855 252</a>.</p>
+                <p>Email : <a href="" rel="nofollow">Help@hotel.com</a>.</p>
+                <p>Copyright &copy; 2050 HOTEL. Designed by <a href="" rel="nofollow">Sakib</a>.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="assets/bootstrap-5.2.3/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/myjs.js"></script>
+</body>
+
+</html>

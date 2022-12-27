@@ -1,0 +1,52 @@
+.about {
+    cursor: pointer;
+    background-color: transparent;
+    background: rgba(37, 30, 30, 0.538);
+    color: #FFFFFF;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    height: 100vh;
+}
+
+.about h1 {
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.about h2 {
+    opacity: .8;
+    color: #FFFFFF;
+}
+
+.about span {
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin: auto;
+    border-radius: 50%;
+    font-size: 40px;
+    color: #FFFFFF;
+    opacity: 0.7;
+    background-color: #4C0822;
+    border: 2px solid #4C0822;
+
+
+}
+
+
+
+.about-item:hover h2 {
+    opacity: 1;
+    color: #ff0000;
+    -webkit-transform: scale(1.1, 1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+}
+
+.about .lead {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bold;
+}

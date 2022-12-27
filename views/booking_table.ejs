@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Booking Table</title>
+
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <a href="/bookingadmin" class="active-menu waves-effect waves-dark"><i class="fa fa-table"></i> booking </a>
+                </li>
+                <li>
+                    <a href="/customer" class="waves-effect waves-dark"><i class="fa fa-edit"></i> customer </a>
+                </li>
+                <li>
+                    <a href="/room" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> room </a>
+                </li>
+                <li>
+                    <a href="/staff" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Staff </a>
+                </li>
+
+                <li>
+                    <a href="/logoutadmin" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Logout </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="page-wrapper">
+        <div class="header d-flex">
+            <h1 class="page-header">
+                Booking table 
+            </h1>
+            <div class="page-header">
+                <a href="/bookingcreate" type="button" class="btn btn-success">Add Booking</a>
+            </div>
+            
+            
+            
+        </div>
+        
+        
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="table-responsive">
+                            
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">CID</th>
+                                            <th scope="col">Booking ID</th>
+                                            <th scope="col">email</th>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">End Date</th>
+                                            <th scope="col">Room Type</th>
+                                            <th scope="col">Adult Num</th>
+                                            <th scope="col">Child Num</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <% result.forEach(result=>{ %>
+                                            <tr class="odd gradeX">
+                                            <td><%= result.CID %></td>
+                                            <td><%= result.Booking_ID %></td>
+                                            <td><%= result.email %></td>
+                                            <td class="center"><%= result.Start_Date %></td>
+                                            <td class="center"><%= result.End_Date %></td>
+                                            <td class="center"><%= result.Type %></td>
+                                            <td class="center"><%= result.Adult_num %></td>
+                                            <td class="center"><%= result.Child_Num %></td>
+                                            <td style='white-space: nowrap' class="center"> 
+                                                <a href="/edit/<%=result.Booking_ID %>" type="button" class="btn btn-primary">Edit</a>
+                                                <a href="/delete/<%=result.Booking_ID %>" type="button" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <%})%>                                       
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/materialize/js/materialize.min.js"></script>
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+
+
+</body>
+
+</html>
