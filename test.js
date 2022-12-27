@@ -130,8 +130,13 @@ db.getConnection((error, connection)=>{
   
   // console.log(currentdate);
   // where Start_date < '${currentdate}' AND End_date > '${currentdate}'
-  
-
+  for(let i=1; i<51; i++){
+    let q = `INSERT into Booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) Values ('2031-10-20', '2031-10-24', '2', '3', '${bid=uuid()}', '008e5e11-1f51-48bb-b244-c0786fb270a9', 'williealexander@gmail.com', 'Standard')`
+    db.query(q, (error, result)=>{
+      if(error) throw error;
+    })
+  }
+ 
 
 
 

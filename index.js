@@ -415,33 +415,42 @@ app.post("/adminlogin", (req,res)=>{
   })
 })
 
+
+
+      
+
+
+   
+
+    
+
 app.post('/booking', (req,res)=>{
-  
-  let bookingID = uuid();
-  let start_date = req.body.start_date;
-  let end_date = req.body.end_date;
-  let adult_num = req.body.adult_num;
-  let child_num = req.body.child_num;
-  let type = req.body.Type;
+  db.query("Select Count(*) AS count FROM room where type='Standard'", (error,result)=>{
+    if(error) throw error;
+    const stdNum = result[0].count;
+    db.query("Select Count(*) AS count FROM room where type='deluxe'", (error,result)=>{
+      if(error) throw error;
+      const delNum = result[0].count;
+      db.query("Select Count(*) AS count FROM room where type='Suite'", (error,result)=>{
+        if(error) throw error;
+        const suitNum = result[0].count;
+        let bookingID = uuid();
+        let start_date = req.body.start_date;
+        let end_date = req.body.end_date;
+        let adult_num = req.body.adult_num;
+        let child_num = req.body.child_num;
+        let type = req.body.Type;
+        const q = `Select * from booking where type = '${type}' AND ((start_date between '${start_date}' and '${end_date}') OR (end_date between '${start_date}' and '${end_date}' ) OR (start_date<='${start_date}' AND end_date>='${end_date}'))`;
 
-  let standardNum = 52;
-  let deluxeNum = 67;
-  let suiteNum = 61;
-
-  console.log(req.body.start_date);
-  console.log(req.body.end_date);
-
-  const q = `Select * from booking where type = '${type}' AND ((start_date between '${start_date}' and '${end_date}') OR (end_date between '${start_date}' and '${end_date}' ) OR (start_date<='${start_date}' AND end_date>='${end_date}'))`;
-
-  db.query(q, (error, result)=>{
-    console.log(result);
-    if(type=== "Standard"){
-      if(result.length < standardNum){
-        const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
-        db.query(sQry, (error, result)=>{
-          if(error) throw error;
-          console.log("Inserted into booking");
-          res.redirect("/booking");
+      db.query(q, (error, result)=>{
+        console.log(result);
+        if(type=== "Standard"){
+          if(result.length < stdNum){
+          const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+          db.query(sQry, (error, result)=>{
+            if(error) throw error;
+            console.log("Inserted into booking");
+            res.redirect("/booking");
         })
       }
       else{
@@ -452,7 +461,7 @@ app.post('/booking', (req,res)=>{
     }
 
     else if(type=== "Deluxe"){
-      if(result.length < deluxeNum){
+      if(result.length < delNum){
         const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
         db.query(sQry, (error, result)=>{
           if(error) throw error;
@@ -468,7 +477,7 @@ app.post('/booking', (req,res)=>{
     }
 
     else if(type=== "Suite"){
-      if(result.length < suiteNum){
+      if(result.length < suitNum){
         const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
         db.query(sQry, (error, result)=>{
           if(error) throw error;
@@ -483,7 +492,77 @@ app.post('/booking', (req,res)=>{
       }
     }
   })
-})
+}) 
+      })
+    })
+  })
+  
+  
+
+  // let standardNum = 52;
+  // let deluxeNum = 67;
+  // let suiteNum = 61;
+
+  
+  
+
+
+//   console.log(req.body.start_date);
+//   console.log(req.body.end_date);
+
+//   const q = `Select * from booking where type = '${type}' AND ((start_date between '${start_date}' and '${end_date}') OR (end_date between '${start_date}' and '${end_date}' ) OR (start_date<='${start_date}' AND end_date>='${end_date}'))`;
+
+//   db.query(q, (error, result)=>{
+//     console.log(result);
+//     if(type=== "Standard"){
+//       if(result.length < standardNum){
+//         const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+//         db.query(sQry, (error, result)=>{
+//           if(error) throw error;
+//           console.log("Inserted into booking");
+//           res.redirect("/booking");
+//         })
+//       }
+//       else{
+//         let message = `All ${type} rooms are booked at that time`;
+//         let redirPath = "/booking";
+//         res.render('error_page.ejs', {message, redirPath} )
+//       }
+//     }
+
+//     else if(type=== "Deluxe"){
+//       if(result.length < deluxeNum){
+//         const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+//         db.query(sQry, (error, result)=>{
+//           if(error) throw error;
+//           console.log("Inserted into booking");
+//           res.redirect("/booking");
+//         })
+//       }
+//       else{
+//         let message = `All ${type} rooms are booked at that time`;
+//         let redirPath = "/booking";
+//         res.render('error_page.ejs', {message, redirPath} )
+//       }
+//     }
+
+//     else if(type=== "Suite"){
+//       if(result.length < suiteNum){
+//         const sQry = `Insert into booking(Start_Date, End_Date, Adult_num, Child_Num, Booking_ID, CID, email, Type) values ('${start_date}', '${end_date}', '${adult_num}', '${child_num}', '${bookingID}', '${req.session.cid}', '${req.session.email}', '${type}' )`;
+//         db.query(sQry, (error, result)=>{
+//           if(error) throw error;
+//           console.log("Inserted into booking");
+//           res.redirect("/booking");
+//         })
+//       }
+//       else{
+//         let message = `All ${type} rooms are booked at that time`;
+//         let redirPath = "/booking";
+//         res.render('error_page.ejs', {message, redirPath,} )
+//       }
+//     }
+//   })
+// })
 
 //ADMIN CRUD
 
