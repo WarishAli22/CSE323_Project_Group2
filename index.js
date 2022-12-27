@@ -424,9 +424,9 @@ app.post('/booking', (req,res)=>{
   let child_num = req.body.child_num;
   let type = req.body.Type;
 
-  let standardNum = 10;
-  let deluxeNum = 8;
-  let suiteNum = 7;
+  let standardNum = 52;
+  let deluxeNum = 67;
+  let suiteNum = 61;
 
   console.log(req.body.start_date);
   console.log(req.body.end_date);
