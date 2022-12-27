@@ -415,14 +415,7 @@ app.post("/adminlogin", (req,res)=>{
   })
 })
 
-
-
-      
-
-
-   
-
-    
+  
 
 app.post('/booking', (req,res)=>{
   db.query("Select Count(*) AS count FROM room where type='Standard'", (error,result)=>{
